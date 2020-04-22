@@ -25,16 +25,17 @@ $cakeDescription = 'Firna Gelas';
         <?= $cakeDescription ?>
     </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.7.8/angular-locale_id-id.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     <?= $this->Html->script('jquery.mask.min.js') ?>
-
-
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->fetch('meta') ?>
@@ -42,9 +43,9 @@ $cakeDescription = 'Firna Gelas';
     <?= $this->fetch('script') ?>
 
     <style>
-        @media (min-width:992px) {.hide-lg {display: none !important}}
-        @media (min-width: 768px) and (max-width: 992px) {.hide-md {display: none !important}}
-        @media (max-width: 576px) {.hide-sm {display: none !important;}}
+        @media (min-width: 992px) {.hide-lg {display: none !important}}
+        @media (min-width: 768px) and (max-width: 992px) {.hide-md {display: none !important} .clock, .openMenu {left: 50% !important}}
+        @media (max-width: 576px) {.hide-sm {display: none !important;} .clock, .openMenu {left: 50% !important}}
 
         .menu-item {
             height: 50px;
@@ -59,15 +60,27 @@ $cakeDescription = 'Firna Gelas';
         .menu-item:hover {color: white !important; background-color: #22262a !important;}
         .menu-item:focus {color: white !important; background-color: #22262a !important;}
         .hide_bullet {list-style-type: none;}
+
+        #bukaMenu {
+            z-index: 99;
+            position: fixed;
+            align-items: end;
+            display: flex;
+            left: 0px;
+            height: 100vh;
+        }
+
+        .tulisanNavigasi {margin-left: -52px; cursor: pointer;}
+        .tulisanNavigasi:hover {margin-left: 0px !important; transition: 0.4s;}
     </style>
 </head>
 
-<header>
+<header id="bagianNavigasi">
     <nav class="navbar navbar-expand-md bg-light border-bottom navbar-light">
         <!-- Brand -->
         <?php
             echo $this->Html->link(
-                      $this->fetch('title'), 
+                      "Firna Gelas  ", 
                       array(
                           'controller' => 'Pages', 
                           'action' => 'home',
@@ -78,7 +91,7 @@ $cakeDescription = 'Firna Gelas';
           
   
         <!-- Toggler/collapsibe Button -->
-        <button class="navbar-toggler" type="button">
+        <button class="navbar-toggler" id="navToggler" type="button">
           <span class="navbar-toggler-icon"></span>
         </button>
   
@@ -110,8 +123,14 @@ $cakeDescription = 'Firna Gelas';
             <div class="row">
                 <div id="navKiri" class="col-lg-2 fixed-top px-0 col-sm-12 col-md-12 hide-md hide-sm bg-dark py-4">
 
-                    <h4 class="px-3 text-light ">Firna Gelas</h4>
-                    <br>
+                    <h4 id="navClose" style="cursor: pointer;" class="float-right pr-4 text-light">
+                        <i class="fas fa-times"></i>
+                    </h4>
+                    
+                    <br><br>
+
+                    <!-- <h4 class="px-3 text-light">Firna Gelas</h4> -->
+                    
                     <?php
                     echo '<i class="fas fa-home mr-2 d-inline pl-3 text-light"></i>' . $this->Html->link(
                               'Beranda', 
@@ -150,12 +169,40 @@ $cakeDescription = 'Firna Gelas';
                         <li><?= $this->Html->link(__('List Items'), ['controller' => 'Items', 'action' => 'index'], ['class' => 'text-light']) ?> </li>
                         <li><?= $this->Html->link(__('New Items'), ['controller' => 'Items', 'action' => 'add'], ['class' => 'text-light']) ?> </li>                    
                     </div>
+
+                    <a href="#Akun" class="menu-item px-3" data-toggle="collapse" data-target="#Akun">
+                        <i class="fas fa-user mr-2"></i>   Akun
+                    </a>
+
+                    <div id="Akun" class="collapse menu-value">
+                        <li>
+                            <?php
+                                if($this->request->getsession()->read('Auth')) {
+                                    // user is logged in, show logout..user menu etc
+                                    echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout'), array('class' => 'text-light'));
+                                } else {
+                                    // the user is not logged in
+                                    echo $this->Html->link('Login', array('controller' => 'users', 'action' => 'login'), array('class' => 'text-light'));
+                                }
+                            ?>
+                        </li>
+                    </div>
                 </div>
 
-                <div class="col-lg-2 col-sm-12 hide-md hide-sm col-md-12"></div>
+                <div id="helperNavKiri" class="col-lg-2 col-sm-12 hide-md hide-sm col-md-12"></div>
 
-                <div class="col-lg-10 col-sm-12 col-md-12 py-3 konten">
-                    <?= $this->fetch('content') ?>
+                <div class="col py-3 konten">
+                    
+                    <div id="bukaMenu" class="hide-md hide-sm">
+                        <div class="bg-dark tulisanNavigasi text-light p-1"> 
+                            <small>Navigasi</small>
+                            <i class="fas fa-lg fa-angle-right"></i>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <?= $this->fetch('content') ?>
+                    </div>
                     <br>
                 </div>
             </div>
@@ -171,11 +218,26 @@ $cakeDescription = 'Firna Gelas';
         $('input[type=email]').addClass('form-control mb-2');
         $('input[type=password]').addClass('form-control mb-2');
         $('input[type=number]').addClass('form-control mb-2');
+        $('select').addClass('custom-select mb-2');
         $('.menu-value').addClass('border-bottom px-3 text-light py-3');
 
         $('.first, .prev').addClass('float-left');
         $('.next, .last').addClass('float-right');
         $('.konten').addClass('hide_bullet');
+
+        $('#navToggler').click(function() {
+            $('#navKiri').removeClass('hide-md hide-sm');
+            $('#navKiri').hide();
+            $('#navKiri').show();
+        });
+
+        $('#navClose').click(function() {
+            $('#navKiri, #helperNavKiri').hide();
+        });
+
+        $('.tulisanNavigasi').click(function() {
+            $('#navKiri, #helperNavKiri').show();
+        });
     </script>
 </body>
 </html>
