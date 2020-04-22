@@ -106,7 +106,7 @@ p, span{
 <div class="layers text-center">
 
     <div class="container">
-        <div id="layerTypeWrite" class="layerTypeWrite">
+        <div id="layerTypeWrite" class="layerTypeWrite hide-sm hide-md">
             <p id="typewriter" data-typewriter="Firna Gelas,
                                             Aneka Gelas,
                                             Aneka Payung,
@@ -204,7 +204,6 @@ function myLoop () {
    setTimeout(function () {    //  call a 3s setTimeout when the loop is called
       typewriter(w[i]);          //  your code here
       i++;                     //  increment the counter
-      console.log(i);
       if (i < w.length) {            //  if the counter < 10, call the loop function
          myLoop();             //  ..  again which will trigger another 
       }                        //  ..  setTimeout()
