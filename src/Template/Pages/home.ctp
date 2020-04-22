@@ -21,10 +21,10 @@
     .clock {
     position: absolute;
     top: 50%;
-    left: 55%;
+    left: 59%;
     transform: translateX(-50%) translateY(-50%);
     color: white;
-    font-size: 60px;
+    font-size: 50px;
     font-family: Orbitron;
     letter-spacing: 7px;
     }
@@ -37,13 +37,92 @@
         cursor: pointer;
         color: white;
     }
+.layerTypeWrite {
+    top: 34%;
+  left: 38%;
+  position: absolute;
+}
+
+p, span{
+  font-size: 3rem;
+  display:inline;
+  color: white;
+}
+.blinking-cursor {
+  color: #2E3D48;
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-webkit-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-ms-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-o-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
 </style>
 
 <div class="layers text-center">
 
+    <div class="container">
+        <div id="layerTypeWrite" class="layerTypeWrite">
+            <p id="typewriter" data-typewriter="Firna Gelas,
+                                            Aneka Gelas,
+                                            Aneka Payung,
+                                            Aneka Mangkuk,
+                                            Harga Murah,
+                                            Terpercaya,
+                                            Berkualitas,
+                                            Firna Gelas
+                                            ">
+            </p><span class="blinking-cursor">|</span>
+        </div>
+      </div>
+
     <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
 
-    <span class="openMenu">
+    <span class="openMenu hide-lg">
         <h4>Buka Menu</h4>
     </span>
 </div>
@@ -77,5 +156,61 @@
 
     showTime();
 
+    var typewriter = function(txt) {
+    var container = document.getElementById('typewriter'),
+      speed = 28,
+      i = 0,
+      wordsObj = txt.split(" ")
+    container.textContent = "";
+    //console.log(txt) // print self text
+    runAllWords();
+    function runAllWords() {
+
+      if (i < wordsObj.length) {
+        var a = (i == 0) ? i : i - 1;
+        setTimeout(function() {
+          showWord(wordsObj[i], 0)
+        }, wordsObj[a].length * speed);
+      }
+    }
+
+    function showWord(word, countWord) {
+      if (countWord < word.length) {
+        setTimeout(function() {
+          showLetter(word, countWord)
+        }, speed);
+      } else {
+        container.textContent = container.textContent + " ";
+        i += 1;
+        runAllWords();
+      }
+      if (i === wordsObj.length) {
+        //console.log('complete')
+      }
+    }
+
+    function showLetter(word, countWord) {
+      container.textContent = container.textContent + word[countWord];
+      showWord(word, countWord + 1);
+    }
+  }
+
+var i = 0;
+function myLoop () {  
+//  create a loop function
+	
+   var dataType = document.getElementById('typewriter').dataset.typewriter,
+       w = dataType.split(',')
+   setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+      typewriter(w[i]);          //  your code here
+      i++;                     //  increment the counter
+      console.log(i);
+      if (i < w.length) {            //  if the counter < 10, call the loop function
+         myLoop();             //  ..  again which will trigger another 
+      }                        //  ..  setTimeout()
+   }, 3000)
+}
+
+myLoop();
     
 </script>
