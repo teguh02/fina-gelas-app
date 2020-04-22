@@ -6,19 +6,13 @@
 use Cake\I18n\I18n;
 I18n::setLocale('id-ID');
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Customer'), ['action' => 'edit', $customer->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Customer'), ['action' => 'delete', $customer->id], ['confirm' => __('Are you sure you want to delete # {0}?', $customer->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Customers'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Customer'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Invoices'), ['controller' => 'Invoices', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Invoice'), ['controller' => 'Invoices', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="customers view large-9 medium-8 columns content">
-    <h3><?= h($customer->name) ?></h3>
+
+<h3 class="float-left"><?= h($customer->name) ?></h3>
+
+        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $customer->id], ['class' => 'float-right'], ['confirm' => __('Are you sure you want to delete # {0}?', $customer->id)]) ?> 
+        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $customer->id], ['class' => 'float-right mr-2']) ?> 
+<br>    
+<div class="table-resposnive">
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Name') ?></th>
@@ -38,7 +32,9 @@ I18n::setLocale('id-ID');
         </tr>
     </table>
     <div class="related">
+        <br>
         <h4><?= __('Related Invoices') ?></h4>
+        <br>
         <?php if (!empty($customer->invoices)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
@@ -69,7 +65,9 @@ I18n::setLocale('id-ID');
         <?php endif; ?>
     </div>
     <div class="related">
+        <br>
         <h4><?= __('Related Order Fulfilments') ?></h4>
+        <br>
         <?php if (!empty($customer->order_fulfilments)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
@@ -96,7 +94,9 @@ I18n::setLocale('id-ID');
         <?php endif; ?>
     </div>
     <div class="related">
+        <br>
         <h4><?= __('Related Packing Slips') ?></h4>
+        <br>
         <?php if (!empty($customer->packing_slips)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
@@ -125,7 +125,9 @@ I18n::setLocale('id-ID');
         <?php endif; ?>
     </div>
     <div class="related">
+        <br>
         <h4><?= __('Related Payments') ?></h4>
+        <br>
         <?php if (!empty($customer->payments)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
