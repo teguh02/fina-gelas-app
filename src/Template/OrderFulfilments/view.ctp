@@ -4,21 +4,15 @@
  * @var \App\Model\Entity\OrderFulfilment $orderFulfilment
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Order Fulfilment'), ['action' => 'edit', $orderFulfilment->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Order Fulfilment'), ['action' => 'delete', $orderFulfilment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $orderFulfilment->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Order Fulfilments'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Order Fulfilment'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Items'), ['controller' => 'Items', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Item'), ['controller' => 'Items', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="orderFulfilments view large-9 medium-8 columns content">
-    <h3><?= h($orderFulfilment->id) ?></h3>
+
+<h3 class="float-left"><?= h($orderFulfilment->id) ?></h3>
+
+        <li><?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $orderFulfilment->id], ['class' => 'float-right ml-2'], ['confirm' => __('Are you sure you want to delete # {0}?', $orderFulfilment->id)]) ?> </li>
+        <li><?= $this->Html->link(__('Edit'), ['action' => 'edit', $orderFulfilment->id], ['class' => 'float-right']) ?> </li>
+
+        <br><br>
+
+<div class="orderFulfilments view large-9 medium-8 columns content table-responsive">
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Customer') ?></th>

@@ -10,7 +10,7 @@
 <link href="https://www.jsviews.com/samples/samples.css" rel="stylesheet" />
 <?= $this->Html->script('jquery.mask.min.js'); ?>
 
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
@@ -25,7 +25,7 @@
         <li><?= $this->Html->link(__('List Invoice Items'), ['controller' => 'InvoiceItems', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Invoice Item'), ['controller' => 'InvoiceItems', 'action' => 'add']) ?></li>
     </ul>
-</nav>
+</nav> -->
 
 <div class="invoices form large-9 medium-8 columns content" ng-app="invoice_app" ng-controller="invoice_controller">
     <?php // debug(json_encode($invoice->invoice_items)) ?>
@@ -45,6 +45,8 @@
         </div>
 
     </fieldset>
+
+    <br>
 
     <button type="button" class="btn btn-secondary" id="btnAdd" ng-click="addRow()"> Tambah Barang </button>
 
@@ -102,6 +104,10 @@
 
 
 <script>
+    $('button').addClass('text-light');
+    $('#invTbl input[name=quantity], input[type=text], input[type=number]').css('height', '30px')
+    
+
     // Import vars for previously stored items
     var json = <?= $json ?>;
     console.log(json.invoice_items);

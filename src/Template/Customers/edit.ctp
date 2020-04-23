@@ -16,6 +16,6 @@
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
-    <button onclick="window.history.back();" class="mt-3">Kembali</button>
+    <!-- <button onclick="window.history.back();" class="mt-3">Kembali</button> -->
     <?= $this->Form->end() ?>
 </div>

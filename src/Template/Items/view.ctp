@@ -4,23 +4,15 @@
  * @var \App\Model\Entity\Item $item
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Item'), ['action' => 'edit', $item->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Item'), ['action' => 'delete', $item->id], ['confirm' => __('Are you sure you want to delete # {0}?', $item->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Items'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Item'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Invoice Items'), ['controller' => 'InvoiceItems', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Invoice Item'), ['controller' => 'InvoiceItems', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Order Fulfilments'), ['controller' => 'OrderFulfilments', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Order Fulfilment'), ['controller' => 'OrderFulfilments', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Packingslip Items'), ['controller' => 'PackingslipItems', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Packingslip Item'), ['controller' => 'PackingslipItems', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
+
+<h3 class="float-left"><?= h($item->id) ?></h3>
+
+<li><?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $item->id], ['class' => 'float-right ml-2'], ['confirm' => __('Are you sure you want to delete # {0}?', $item->id)]) ?> </li>
+<li><?= $this->Html->link(__('Edit'), ['action' => 'edit', $item->id], ['class' => 'float-right']) ?> </li>
+
+
 <div class="items view large-9 medium-8 columns content">
-    <h3><?= h($item->id) ?></h3>
+
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Item Code') ?></th>
@@ -55,8 +47,10 @@
             <td><?= $this->Number->format($item->boxperunit) ?></td>
         </tr>
     </table>
+    <br>
     <div class="related">
         <h4><?= __('Related Invoice Items') ?></h4>
+        <br>
         <?php if (!empty($item->invoice_items)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
@@ -92,6 +86,7 @@
     </div>
     <div class="related">
         <h4><?= __('Related Order Fulfilments') ?></h4>
+        <br>
         <?php if (!empty($item->order_fulfilments)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
@@ -119,6 +114,7 @@
     </div>
     <div class="related">
         <h4><?= __('Related Packingslip Items') ?></h4>
+        <br>
         <?php if (!empty($item->packingslip_items)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>

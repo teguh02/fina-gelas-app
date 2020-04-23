@@ -114,7 +114,7 @@ $cakeDescription = 'Firna Gelas';
 </header>
 <body>
     <style>
-        #navKiri {height: 100vh; position: fixed;}
+        #navKiri {height: 100vh; position: fixed; overflow-y: auto;}
     </style>
     
     <?= $this->Flash->render() ?>
@@ -133,7 +133,7 @@ $cakeDescription = 'Firna Gelas';
                     
                     <?php
                     echo '<i class="fas fa-home mr-2 d-inline pl-3 text-light"></i>' . $this->Html->link(
-                              'Beranda', 
+                              'Home', 
                               array(
                                   'controller' => 'Pages', 
                                   'action' => 'home',
@@ -148,8 +148,8 @@ $cakeDescription = 'Firna Gelas';
                     </a>
 
                     <div id="Customers" class="collapse menu-value ">
-                        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index'], ['class' => 'text-light']) ?> </li>
-                        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add'], ['class' => 'text-light']) ?> </li>
+                        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?> </li>
+                        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?> </li>
                     </div>
 
                     <a href="#Invoices" class="menu-item px-3" data-toggle="collapse" data-target="#Invoices">
@@ -157,8 +157,8 @@ $cakeDescription = 'Firna Gelas';
                     </a>
 
                     <div id="Invoices" class="collapse menu-value">
-                        <li><?= $this->Html->link(__('List Invoices'), ['controller' => 'Invoices', 'action' => 'index'], ['class' => 'text-light']) ?> </li>
-                        <li><?= $this->Html->link(__('New Invoice'), ['controller' => 'Invoices', 'action' => 'add'], ['class' => 'text-light']) ?> </li>
+                        <li><?= $this->Html->link(__('List Invoices'), ['controller' => 'Invoices', 'action' => 'index']) ?> </li>
+                        <li><?= $this->Html->link(__('New Invoice'), ['controller' => 'Invoices', 'action' => 'add']) ?> </li>
                     </div>
 
                     <a href="#Items" class="menu-item px-3" data-toggle="collapse" data-target="#Items">
@@ -166,12 +166,40 @@ $cakeDescription = 'Firna Gelas';
                     </a>
 
                     <div id="Items" class="collapse menu-value">
-                        <li><?= $this->Html->link(__('List Items'), ['controller' => 'Items', 'action' => 'index'], ['class' => 'text-light']) ?> </li>
-                        <li><?= $this->Html->link(__('New Items'), ['controller' => 'Items', 'action' => 'add'], ['class' => 'text-light']) ?> </li>                    
+                        <li><?= $this->Html->link(__('List Items'), ['controller' => 'Items', 'action' => 'index']) ?> </li>
+                        <li><?= $this->Html->link(__('New Items'), ['controller' => 'Items', 'action' => 'add']) ?> </li>                    
+                    </div>
+                    
+                    <a href="#OrderFulfilments" class="menu-item px-3" data-toggle="collapse" data-target="#OrderFulfilments">
+                        <i class="fas fa-truck-loading mr-2"></i>   Order Fulfilments
+                    </a>
+
+                    <div id="OrderFulfilments" class="collapse menu-value">
+                        <li><?= $this->Html->link(__('List Order Fulfilments'), ['controller' => 'OrderFulfilments', 'action' => 'index'],) ?></li>
+                        <li><?= $this->Html->link(__('New Order Fulfilment'), ['controller' => 'OrderFulfilments', 'action' => 'add']) ?></li>
+                    </div>
+
+
+                    <a href="#Packingslip" class="menu-item px-3" data-toggle="collapse" data-target="#Packingslip">
+                        <i class="fas fa-th-large mr-2"></i>   Packingslip
+                    </a>
+
+                    <div id="Packingslip" class="collapse menu-value">
+                        <li><?= $this->Html->link(__('List Packingslip Items'), ['controller' => 'PackingslipItems', 'action' => 'index']) ?></li>
+                        <li><?= $this->Html->link(__('New Packingslip Item'), ['controller' => 'PackingslipItems', 'action' => 'add']) ?></li>
+                    </div>
+
+                    <a href="#Packingslip" class="menu-item px-3" data-toggle="collapse" data-target="#Vehicle">
+                        <i class="fas fa-truck mr-2"></i>   Vehicle
+                    </a>
+
+                    <div id="Vehicle" class="collapse menu-value">
+                        <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?></li>
+                        <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?></li>
                     </div>
 
                     <a href="#Akun" class="menu-item px-3" data-toggle="collapse" data-target="#Akun">
-                        <i class="fas fa-user mr-2"></i>   Akun
+                        <i class="fas fa-user mr-2"></i>   Account
                     </a>
 
                     <div id="Akun" class="collapse menu-value">
@@ -217,9 +245,10 @@ $cakeDescription = 'Firna Gelas';
         $('input[type=text]').addClass('form-control mb-2');
         $('input[type=email]').addClass('form-control mb-2');
         $('input[type=password]').addClass('form-control mb-2');
-        $('input[type=number]').addClass('form-control mb-2');
+        $('input[type=number], input[type=date]').addClass('form-control mb-2');
         $('select').addClass('custom-select mb-2');
         $('.menu-value').addClass('border-bottom px-3 text-light py-3');
+        $('.menu-value li a').addClass('text-light');
 
         $('.first, .prev').addClass('float-left');
         $('.next, .last').addClass('float-right');

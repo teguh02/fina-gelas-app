@@ -13,7 +13,7 @@
 
 
 
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Invoices'), ['action' => 'index']) ?></li>
@@ -22,7 +22,7 @@
         <li><?= $this->Html->link(__('List Invoice Items'), ['controller' => 'InvoiceItems', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Invoice Item'), ['controller' => 'InvoiceItems', 'action' => 'add']) ?></li>
     </ul>
-</nav>
+</nav> -->
 
 <div class="invoices form large-9 medium-8 columns content" ng-app="invoice_app" ng-controller="invoice_controller">
     <?= $this->Form->create($invoice, ['id' => 'form']) ?>
@@ -40,6 +40,8 @@
         </div>
 
     </fieldset>
+
+    <br>
 
     <button type="button" class="btn btn-secondary" id="btnAdd" ng-click="addRow()"> Tambah Barang </button>
 
@@ -95,6 +97,10 @@
     <?= $this->Form->end() ?>
 </div>
 
+<script>
+    $('button').addClass('text-light');
+    $('#invTbl input[name=quantity], input[type=text], input[type=number]').css('height', '30px');
+</script>
 
 <script>
 

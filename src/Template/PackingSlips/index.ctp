@@ -4,18 +4,10 @@
  * @var \App\Model\Entity\PackingSlip[]|\Cake\Collection\CollectionInterface $packingSlips
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Packing Slip'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="packingSlips index large-9 medium-8 columns content">
-    <h3><?= __('Packing Slips') ?></h3>
+
+<h3><?= __('Packing Slips') ?></h3>
+
+<div class="packingSlips index table-responsive large-9 medium-8 columns content">
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>

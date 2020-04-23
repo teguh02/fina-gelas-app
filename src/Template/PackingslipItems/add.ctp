@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\PackingslipItem $packingslipItem
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Packingslip Items'), ['action' => 'index']) ?></li>
@@ -15,7 +15,7 @@
         <li><?= $this->Html->link(__('List Order Fulfilments'), ['controller' => 'OrderFulfilments', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Order Fulfilment'), ['controller' => 'OrderFulfilments', 'action' => 'add']) ?></li>
     </ul>
-</nav>
+</nav> -->
 <div class="packingslipItems form large-9 medium-8 columns content">
     <?= $this->Form->create($packingslipItem) ?>
     <fieldset>

@@ -10,21 +10,13 @@ use Cake\I18n\Number;
 
 I18n::setLocale('id-ID');
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Invoice'), ['action' => 'edit', $invoice->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Invoice'), ['action' => 'delete', $invoice->id], ['confirm' => __('Are you sure you want to delete # {0}?', $invoice->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Invoices'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Invoice'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Invoice Items'), ['controller' => 'InvoiceItems', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Invoice Item'), ['controller' => 'InvoiceItems', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="invoices view large-9 medium-8 columns content">
-    <h3> Nota (ID komputer)  <?= h($invoice->id) ?></h3>
+
+<h3 class="float-left"> Nota (ID komputer)  <?= h($invoice->id) ?></h3>
+
+        <li><?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $invoice->id], ['class' => 'float-right ml-2'], ['confirm' => __('Are you sure you want to delete # {0}?', $invoice->id)]) ?> </li>
+        <li><?= $this->Html->link(__('Edit'), ['action' => 'edit', $invoice->id], ['class' => 'float-right']) ?> </li>
+
+<div class="invoices view large-9 medium-8 columns table-responsive content">
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Kode Nota') ?></th>
@@ -47,6 +39,7 @@ I18n::setLocale('id-ID');
             <td><?=  date_format($invoice->invoice_date,"d M Y") ?></td>
         </tr>
     </table>
+    <br>
     <div class="related">
         <h4><?= __('Related Invoice Items') ?></h4>
         <?php if (!empty($invoice->invoice_items)): ?>

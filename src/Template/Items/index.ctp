@@ -10,20 +10,10 @@ use Cake\I18n\Number;
 
 I18n::setLocale('id-ID');
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Item'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Invoice Items'), ['controller' => 'InvoiceItems', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Invoice Item'), ['controller' => 'InvoiceItems', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Order Fulfilments'), ['controller' => 'OrderFulfilments', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Order Fulfilment'), ['controller' => 'OrderFulfilments', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Packingslip Items'), ['controller' => 'PackingslipItems', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Packingslip Item'), ['controller' => 'PackingslipItems', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="items index large-9 medium-8 columns content">
-    <h3><?= __('Items') ?></h3>
+<h3><?= __('Items') ?></h3>
+<br>
+
+<div class="items index large-9 medium-8 columns content table-responsive">
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -60,14 +50,9 @@ I18n::setLocale('id-ID');
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
 </div>
+
+<?= $this->Paginator->first('<< ' . __('first')) ?>
+<?= $this->Paginator->prev('< ' . __('previous')) ?>
+<?= $this->Paginator->next(__('next') . ' >') ?>
+<?= $this->Paginator->last(__('last') . ' >>') ?>
