@@ -70,6 +70,15 @@ $cakeDescription = 'Firna Gelas';
             height: 100vh;
         }
 
+        .jamNavigasi {
+            bottom: 0px;   
+            position: fixed;
+            color: white;
+            z-index: 99;
+            background-color: #22262a;
+            
+        }
+
         .tulisanNavigasi {margin-left: -52px; cursor: pointer;}
         .tulisanNavigasi:hover {margin-left: 0px !important; transition: 0.4s;}
     </style>
@@ -215,6 +224,10 @@ $cakeDescription = 'Firna Gelas';
                             ?>
                         </li>
                     </div>
+
+                    <div class="container jamNavigasi col-2 py-2">
+                       <?= date('D') . ' ' . date('d') . ' ' . date('F') . ' ' . date('Y') ?>  <div id="MyClockinNav" onload="showTime()"></div>
+                    </div>
                 </div>
 
                 <div id="helperNavKiri" class="col-lg-2 col-sm-12 hide-md hide-sm col-md-12"></div>
@@ -267,6 +280,36 @@ $cakeDescription = 'Firna Gelas';
         $('.tulisanNavigasi').click(function() {
             $('#navKiri, #helperNavKiri').show();
         });
+
+        function showTime(){
+            var date = new Date();
+            var h = date.getHours(); // 0 - 23
+            var m = date.getMinutes(); // 0 - 59
+            var s = date.getSeconds(); // 0 - 59
+            var session = "AM";
+
+            if(h == 0){
+                h = 12;
+            }
+
+            if(h > 12){
+                h = h - 12;
+                session = "PM";
+            }
+
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+            var time = h + ":" + m + ":" + s + " " + session;
+            document.getElementById("MyClockinNav").innerText = time;
+            document.getElementById("MyClockinNav").textContent = time;
+
+            setTimeout(showTime, 1000);
+
+        }
+
+        showTime();
     </script>
 </body>
 </html>
