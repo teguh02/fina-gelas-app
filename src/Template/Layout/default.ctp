@@ -225,7 +225,7 @@ $cakeDescription = 'Firna Gelas';
                         </li>
                     </div>
 
-                    <div class="container jamNavigasi col-2 py-2">
+                    <div class="container jamNavigasi col-lg-2 col-md-12 col-sm-12 py-2">
                        <?= date('D') . ' ' . date('d') . ' ' . date('F') . ' ' . date('Y') ?>  <div id="MyClockinNav" onload="showTime()"></div>
                     </div>
                 </div>
